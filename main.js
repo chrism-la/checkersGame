@@ -33,6 +33,11 @@ function movePiece() {
 
     if (piece) {
         selectedPiece = piece;
-        console.log(selectedPiece);
+        // if square clicked has piece then now piece is selectedPiece
+    } else if (selectedPiece) {
+        square.appendChild(selectedPiece);
+        // if selectedPiece has value of piece append selectedPiece to that square clicked
+        selectedPiece = null;
+        // clear selectedPiece value after placing in new square
     }
 }
