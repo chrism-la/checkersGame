@@ -8,6 +8,7 @@ function createBoard() {
             const square = document.createElement('div');
             square.className = 'square';
             square.id = `${row}-${col}`;
+            square.onclick = movePiece;
             if ((row + col) % 2 === 0) {
                 square.classList.add('red');
             } else {
