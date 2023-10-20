@@ -1,6 +1,6 @@
 const gameBoard = document.getElementById('gameBoard');
 const squares = [];
-
+let selectedPiece;
 createBoard();
 function createBoard() {
     for (let row = 0; row < 8; row++) {
