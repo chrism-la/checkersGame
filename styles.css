@@ -11,3 +11,13 @@
   background-size: cover;
   background-position: center;
 }
+
+.gameBoard {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(8, 80px);
+  grid-template-rows: repeat(8, 80px);
+  border: 15px solid rgb(127, 86, 86);
+  border-style: outset;
+  width: 660px;
+}
