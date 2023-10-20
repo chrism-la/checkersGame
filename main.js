@@ -32,5 +32,19 @@ function movePiece() {
     const piece = square.querySelector('p');
 
     if (square.classList.contains('black')) {
+        // condition to limit movement to only black squares
+        if (piece) {
+            if (selectedPiece) {
+                // if selectedPiece has value of piece and square clicked has a piece then execute nothing. this prevents two squares from having one piece
+            } else {
+                selectedPiece = piece;
+                // if selectedPiece has value of null and square clicked has a piece then now piece is selectedPiece
+            }
+        } else if (selectedPiece) {
+            square.appendChild(selectedPiece);
+            // if selectedPiece has value of piece and square is empty then append selectedPiece to that square clicked
+            selectedPiece = null;
+            // clear selectedPiece value after placing in new square
+        }
     }
 }
