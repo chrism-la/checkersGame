@@ -19,6 +19,7 @@ function createBoard() {
                 }
             }
             gameBoard.appendChild(square);
+            squares.push(square);
         }
     }
 }
