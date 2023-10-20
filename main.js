@@ -8,6 +8,16 @@ function createBoard() {
             const square = document.createElement('div');
             square.className = 'square';
             square.id = `${row}-${col}`;
+            if ((row + col) % 2 === 0) {
+                square.classList.add('red');
+            } else {
+                square.classList.add('black');
+                if (row < 3) {
+                    square.innerHTML = '<p>●</p>';
+                } else if (row > 4) {
+                    square.innerHTML = '<p>○</p>';
+                }
+            }
             gameBoard.appendChild(square);
         }
     }
