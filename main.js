@@ -30,4 +30,9 @@ function movePiece() {
     const square = this;
     // this keyword is referencing the object executing current piece of code => square.onclick
     const piece = square.querySelector('p');
+
+    if (piece) {
+        selectedPiece = piece;
+        console.log(selectedPiece);
+    }
 }
