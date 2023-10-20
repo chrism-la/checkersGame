@@ -40,7 +40,7 @@ function movePiece() {
         }
     } else if (selectedPiece) {
         square.appendChild(selectedPiece);
-        // if selectedPiece has value of piece append selectedPiece to that square clicked
+        // if selectedPiece has value of piece and square is empty then append selectedPiece to that square clicked
         selectedPiece = null;
         // clear selectedPiece value after placing in new square
     }
