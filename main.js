@@ -3,11 +3,13 @@ const squares = [];
 let selectedPiece;
 createBoard();
 function createBoard() {
+    // looping through the gameBoard grid element to create each alternating colored square as well as Player Pieces
     for (let row = 0; row < 8; row++) {
         for (let col = 0; col < 8; col++) {
             const square = document.createElement('div');
             square.className = 'square';
             square.id = `${row}-${col}`;
+            // adding eventlistener to each square
             square.onclick = movePiece;
             if ((row + col) % 2 === 0) {
                 square.classList.add('red');
@@ -26,5 +28,6 @@ function createBoard() {
 }
 function movePiece() {
     const square = this;
+    // this keyword is referencing the object executing current piece of code => square.onclick
     const piece = square.querySelector('p');
 }
