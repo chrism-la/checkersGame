@@ -12,6 +12,13 @@
   background-position: center;
 }
 
+section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .gameBoard {
   justify-content: center;
   display: grid;
