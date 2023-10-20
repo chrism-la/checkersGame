@@ -24,3 +24,6 @@ function createBoard() {
         }
     }
 }
+function movePiece() {
+    const piece = square.querySelector('p');
+}
