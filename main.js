@@ -48,3 +48,6 @@ function movePiece() {
         }
     }
 }
+
+// to prevent backwards movement in movePiece logic
+// to practice OOP and wrap functions in objects and create classes such as Class of Player and Class of Piece
