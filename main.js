@@ -35,17 +35,18 @@ function movePiece() {
         // condition to limit movement to only black squares
         if (piece) {
             if (selectedPiece) {
-                // if selectedPiece has value of piece and square clicked has a piece then execute nothing. this prevents two squares from having one piece
+                // if square clicked has a piece and selectedPiece has value of piece then execute nothing. this prevents two squares from having one piece
             } else {
                 selectedPiece = piece;
-                // if selectedPiece has value of null and square clicked has a piece then now piece is selectedPiece
+                // if square clicked has a piece and selectedPiece has value of null then assign piece in selected square to selectedPiece
             }
         } else if (selectedPiece) {
             square.appendChild(selectedPiece);
-            // if selectedPiece has value of piece and square is empty then append selectedPiece to that square clicked
+            // if square clicked does not have a piece and selectedPiece has value of piece then append selectedPiece to that square clicked
             selectedPiece = null;
             // clear selectedPiece value after placing in new square
         }
+        // else if square clicked does not have a piece and selectedPiece has value of null execute nothing
     }
 }
 
