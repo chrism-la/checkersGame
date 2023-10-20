@@ -25,5 +25,6 @@ function createBoard() {
     }
 }
 function movePiece() {
+    const square = this;
     const piece = square.querySelector('p');
 }
