@@ -28,3 +28,16 @@
   align-items: center;
   font-size: 72px;
 }
+
+
+.square>p {
+  cursor: default;
+}
+
+.black {
+  background-color: #444;
+}
+
+.red {
+  background-color: rgb(133, 0, 0);
+}
