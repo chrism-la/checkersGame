@@ -17,11 +17,11 @@ function createBoard() {
                 if (row < 3) {
                     square.innerHTML = '<p>●</p>';
                     const pTag = square.querySelector('p');
-                    pTag.className = 'black-piece';
+                    pTag.id = 'black-piece';
                 } else if (row > 4) {
                     square.innerHTML = '<p>●</p>';
                     const pTag = square.querySelector('p');
-                    pTag.className = 'white-piece';
+                    pTag.id = 'white-piece';
                 }
             }
             gameBoard.appendChild(square);
@@ -45,14 +45,41 @@ function movePiece() {
                 // if square clicked has a piece and selectedPiece has value of null then assign piece in selected square to selectedPiece
             }
         } else if (selectedPiece) {
-            square.appendChild(selectedPiece);
-            // if square clicked does not have a piece and selectedPiece has value of piece then append selectedPiece to that square clicked
-            selectedPiece = null;
-            // clear selectedPiece value after placing in new square
+            if (viableMove(square, selectedPiece)) {
+                square.appendChild(selectedPiece);
+                // if square clicked does not have a piece and selectedPiece has value of piece then append selectedPiece to that square clicked
+                selectedPiece = null;
+                // clear selectedPiece value after placing in new square
+            } else {
+                selectedPiece = null;
+            }
         }
-        // else if square clicked does not have a piece and selectedPiece has value of null execute nothing
+        // else square clicked does not have a piece and selectedPiece has value of null execute nothing
     }
 }
+function viableMove(square, selectedPiece) {
+    console.log(square);
+    console.log(selectedPiece.parentElement);
+    if (square && selectedPiece) {
+        // define all variables (selectedPiece, piece, capturedPiece) to parse position data
+        const squarePos = square.id.split('-');
+        const selectedPiecePos = selectedPiece.parentElement.id.split('-');
 
-// to prevent backwards movement in movePiece logic
-// to create 'capture of pieces' logic and remove captured piece
+        const squareRow = parseInt(squarePos[0]);
+        const squareCol = parseInt(squarePos[1]);
+        const selectedPieceRow = parseInt(selectedPiecePos[0]);
+        const selectedPieceCol = parseInt(selectedPiecePos[1]);
+
+        // conditional statements to check for viable move or captureMove
+        if (
+            (selectedPieceRow === squareRow + 1 && (selectedPieceCol === squareCol + 1 || selectedPieceCol === squareCol - 1)) ||
+            (selectedPieceRow === squareRow - 1 && (selectedPieceCol === squareCol + 1 || selectedPieceCol === squareCol - 1))
+        ) {
+            console.log('good');
+            return true;
+        }
+        console.log('false');
+        return false;
+        // else if check for capture move
+    }
+}
