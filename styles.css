@@ -47,3 +47,7 @@ section {
 .red {
   background-color: rgb(133, 0, 0);
 }
+
+.white-piece {
+  color: #ffffffce;
+}

@@ -19,7 +19,7 @@ function createBoard() {
                     const pTag = square.querySelector('p');
                     pTag.className = 'black-piece';
                 } else if (row > 4) {
-                    square.innerHTML = '<p>○</p>';
+                    square.innerHTML = '<p>●</p>';
                     const pTag = square.querySelector('p');
                     pTag.className = 'white-piece';
                 }
@@ -55,4 +55,4 @@ function movePiece() {
 }
 
 // to prevent backwards movement in movePiece logic
-// to practice OOP and wrap functions in objects and create classes such as Class of Player and Class of Piece
+// to create 'capture of pieces' logic and remove captured piece
