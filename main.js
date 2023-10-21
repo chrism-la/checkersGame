@@ -1,7 +1,6 @@
 const gameBoard = document.getElementById('gameBoard');
 const squares = [];
 let selectedPiece;
-createBoard();
 function createBoard() {
     // looping through the gameBoard grid element to create each alternating colored square as well as Player Pieces
     for (let row = 0; row < 8; row++) {
@@ -17,8 +16,12 @@ function createBoard() {
                 square.classList.add('black');
                 if (row < 3) {
                     square.innerHTML = '<p>●</p>';
+                    const pTag = square.querySelector('p');
+                    pTag.className = 'black-piece';
                 } else if (row > 4) {
                     square.innerHTML = '<p>○</p>';
+                    const pTag = square.querySelector('p');
+                    pTag.className = 'white-piece';
                 }
             }
             gameBoard.appendChild(square);
@@ -26,6 +29,7 @@ function createBoard() {
         }
     }
 }
+createBoard();
 function movePiece() {
     const square = this;
     // this keyword is referencing the object executing current piece of code => square.onclick
