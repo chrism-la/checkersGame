@@ -1,5 +1,4 @@
 const gameBoard = document.getElementById('gameBoard');
-const squares = [];
 let selectedPiece;
 function createBoard() {
     // looping through the gameBoard grid element to create each alternating colored square as well as Player Pieces
@@ -8,8 +7,8 @@ function createBoard() {
             const square = document.createElement('div');
             square.className = 'square';
             square.id = `${row}-${col}`;
-            // adding eventlistener to each square
             square.onclick = movePiece;
+            // adding eventlistener to each square
             if ((row + col) % 2 === 0) {
                 square.classList.add('red');
             } else {
@@ -25,7 +24,6 @@ function createBoard() {
                 }
             }
             gameBoard.appendChild(square);
-            squares.push(square);
         }
     }
 }
@@ -58,8 +56,8 @@ function movePiece() {
     }
 }
 function viableMove(square, selectedPiece) {
-    console.log(square);
-    console.log(selectedPiece.parentElement);
+    console.log('destination', square);
+    console.log('selectedPiece', selectedPiece.parentElement);
     if (square && selectedPiece) {
         // define all variables (selectedPiece, piece, capturedPiece) to parse position data
         const squarePos = square.id.split('-');
@@ -67,19 +65,28 @@ function viableMove(square, selectedPiece) {
 
         const squareRow = parseInt(squarePos[0]);
         const squareCol = parseInt(squarePos[1]);
-        const selectedPieceRow = parseInt(selectedPiecePos[0]);
-        const selectedPieceCol = parseInt(selectedPiecePos[1]);
+        const selPieceRow = parseInt(selectedPiecePos[0]);
+        const selPieceCol = parseInt(selectedPiecePos[1]);
+        const jumpedRow = parseInt((selPieceRow + squareRow) / 2);
+        const jumpedCol = parseInt((selPieceCol + squareCol) / 2);
 
-        // conditional statements to check for viable move or captureMove
+        const jumpedSquare = document.getElementById(`${jumpedRow}-${jumpedCol}`);
+        console.log('captured piece', jumpedSquare);
+        // conditional statements to check for viable move
         if (
-            (selectedPieceRow === squareRow + 1 && (selectedPieceCol === squareCol + 1 || selectedPieceCol === squareCol - 1)) ||
-            (selectedPieceRow === squareRow - 1 && (selectedPieceCol === squareCol + 1 || selectedPieceCol === squareCol - 1))
+            (selPieceRow === squareRow + 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1)) ||
+            (selPieceRow === squareRow - 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1))
         ) {
-            console.log('good');
+            console.log('viable move');
+            return true;
+        } else if (jumpedSquare.querySelector('p')) {
+            jumpedSquare.innerHTML = '';
+            square.appendChild(selectedPiece);
+            selectedPiece = null;
+            console.log('capture move');
             return true;
         }
-        console.log('false');
+        console.log('cannot move here');
         return false;
-        // else if check for capture move
     }
 }
