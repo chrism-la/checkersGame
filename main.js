@@ -37,13 +37,15 @@ function movePiece() {
         // condition to limit movement to only black squares
         if (piece) {
             if (selectedPiece) {
-                // if square clicked has a piece and selectedPiece has value of piece then execute nothing. this prevents two squares from having one piece
+                selectedPiece = null;
+                console.log('invalid move');
+                // if square clicked has a piece and selectedPiece has value of piece then clear selectedPiece. this prevents two squares from having one piece
             } else {
                 selectedPiece = piece;
                 // if square clicked has a piece and selectedPiece has value of null then assign piece in selected square to selectedPiece
             }
         } else if (selectedPiece) {
-            if (viableMove(square, selectedPiece)) {
+            if (validMove(square, selectedPiece)) {
                 square.appendChild(selectedPiece);
                 // if square clicked does not have a piece and selectedPiece has value of piece then append selectedPiece to that square clicked
                 selectedPiece = null;
@@ -53,9 +55,12 @@ function movePiece() {
             }
         }
         // else square clicked does not have a piece and selectedPiece has value of null execute nothing
+    } else {
+        selectedPiece = null;
+        console.log('out of bounds');
     }
 }
-function viableMove(square, selectedPiece) {
+function validMove(square, selectedPiece) {
     console.log('destination', square);
     console.log('selectedPiece', selectedPiece.parentElement);
     if (square && selectedPiece) {
@@ -79,7 +84,7 @@ function viableMove(square, selectedPiece) {
             (selPieceRow === squareRow - 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1))
             //first iteration of a viable move is a one tile diagonal move
         ) {
-            console.log('viable move');
+            console.log('valid move');
             return true;
         } else if (jumpedSquare.querySelector('p')) {
             // second iteration of viable move allows for two tile move only IF jumped square contains a <P> element
