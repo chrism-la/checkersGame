@@ -59,34 +59,37 @@ function viableMove(square, selectedPiece) {
     console.log('destination', square);
     console.log('selectedPiece', selectedPiece.parentElement);
     if (square && selectedPiece) {
-        // define all variables (selectedPiece, piece, capturedPiece) to parse position data
-        const squarePos = square.id.split('-');
-        const selectedPiecePos = selectedPiece.parentElement.id.split('-');
-
+        // define the elements that i will be using to build if/else statements that compare positions in order to check for viable move
+        const squarePos = square.id.split('-'); // .split() splits a string , in this case the id i created for each square ('row-col') , into an array of two items. ('-') => represnts where to split the string
+        const selectedPiecePos = selectedPiece.parentElement.id.split('-'); // .split() again but in this case to the selectedPiece parentElement in other words its square ID
+        // ^^ this essentially is grabbing the position of the two elements i will be working with and allowing me to compare both the row and column to define a one tile move as viable
         const squareRow = parseInt(squarePos[0]);
         const squareCol = parseInt(squarePos[1]);
         const selPieceRow = parseInt(selectedPiecePos[0]);
         const selPieceCol = parseInt(selectedPiecePos[1]);
         const jumpedRow = parseInt((selPieceRow + squareRow) / 2);
         const jumpedCol = parseInt((selPieceCol + squareCol) / 2);
+        // ^^ defining each row and column according to the array built by .split() and parsing these strings into integers for comparison using operators
 
-        const jumpedSquare = document.getElementById(`${jumpedRow}-${jumpedCol}`);
+        const jumpedSquare = document.getElementById(`${jumpedRow}-${jumpedCol}`); // define jumpedSquare and build an ID
+        // after defining both the destination square and selected squares position i can use these to define the position of a jumped square in between the two by comparing their values. essentially allowing for a two tile move as opposed to the only allowable one tile move BUT only if the jumped square contains a piece then considering this a capture move
         console.log('captured piece', jumpedSquare);
-        // conditional statements to check for viable move
         if (
             (selPieceRow === squareRow + 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1)) ||
             (selPieceRow === squareRow - 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1))
+            //first iteration of a viable move is a one tile diagonal move
         ) {
             console.log('viable move');
             return true;
         } else if (jumpedSquare.querySelector('p')) {
-            jumpedSquare.innerHTML = '';
+            // second iteration of viable move allows for two tile move only IF jumped square contains a <P> element
+            jumpedSquare.innerHTML = ''; // remove piece
             square.appendChild(selectedPiece);
             selectedPiece = null;
             console.log('capture move');
             return true;
         }
-        console.log('cannot move here');
+        console.log('cannot move here'); // if no moves viable for example 3 tile move or 2 tile move that is not a capture
         return false;
     }
 }
