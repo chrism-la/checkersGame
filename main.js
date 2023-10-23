@@ -1,15 +1,4 @@
 const gameBoard = document.getElementById('gameBoard');
-let selectedPiece;
-const Player1 = {
-    playerTurn: true,
-    piece: white,
-    score: 0,
-};
-const Player2 = {
-    playerTurn: false,
-    piece: black,
-    score: 0,
-};
 function createBoard() {
     // looping through the gameBoard grid element to create each alternating colored square as well as Player Pieces
     for (let row = 0; row < 8; row++) {
@@ -38,6 +27,7 @@ function createBoard() {
     }
 }
 createBoard();
+let selectedPiece;
 function movePiece() {
     const square = this;
     // this keyword is referencing the object executing current piece of code => square.onclick
@@ -108,3 +98,24 @@ function validMove(square, selectedPiece) {
         return false;
     }
 }
+const pieces = document.querySelectorAll('p');
+const white = [];
+const black = [];
+for (let i = 12; i < 24; i++) {
+    const whitePieces = pieces[i];
+    white.push(whitePieces);
+}
+for (let i = 0; i < 12; i++) {
+    const blackPieces = pieces[i];
+    black.push(blackPieces);
+}
+const Player1 = {
+    playerTurn: true,
+    pieces: white,
+    score: 0,
+};
+const Player2 = {
+    playerTurn: false,
+    pieces: black,
+    score: 0,
+};
