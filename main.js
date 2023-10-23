@@ -1,5 +1,15 @@
 const gameBoard = document.getElementById('gameBoard');
 let selectedPiece;
+const Player1 = {
+    playerTurn: true,
+    piece: white,
+    score: 0,
+};
+const Player2 = {
+    playerTurn: false,
+    piece: black,
+    score: 0,
+};
 function createBoard() {
     // looping through the gameBoard grid element to create each alternating colored square as well as Player Pieces
     for (let row = 0; row < 8; row++) {
@@ -94,7 +104,7 @@ function validMove(square, selectedPiece) {
             console.log('capture move');
             return true;
         }
-        console.log('cannot move here'); // if no moves viable for example 3 tile move or 2 tile move that is not a capture
+        console.log('cannot move here'); // if no valid moves , for example: 3 tile move or 2 tile move that is not a capture
         return false;
     }
 }
