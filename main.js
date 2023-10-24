@@ -121,6 +121,13 @@ const Player2 = {
     score: 0,
 };
 function startGame() {}
+function checkWinCondition() {
+    if (Player1.pieces.length === 0) {
+        console.log('Player 2 wins!');
+    } else if (Player2.pieces.length === 0) {
+        console.log('Player 1 wins!');
+    }
+}
 function switchTurns() {
     Player1.playerTurn = !Player1.playerTurn;
     Player2.playerTurn = !Player2.playerTurn;
