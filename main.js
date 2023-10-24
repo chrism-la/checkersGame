@@ -66,12 +66,12 @@ function validMove(square, selectedPiece) {
     if (square && selectedPiece) {
         // define the elements that i will be using to build if/else statements that compare positions in order to check for viable move
         const squarePos = square.id.split('-'); // .split() splits a string , in this case the id i created for each square ('row-col') , into an array of two items. ('-') => represnts where to split the string
-        const selectedPiecePos = selectedPiece.parentElement.id.split('-'); // .split() again but in this case to the selectedPiece parentElement in other words its square ID
+        const selPiecePos = selectedPiece.parentElement.id.split('-'); // .split() again but in this case to the selectedPiece parentElement in other words its square ID
         // ^^ this essentially is grabbing the position of the two elements i will be working with and allowing me to compare both the row and column to define a one tile move as viable
         const squareRow = parseInt(squarePos[0]);
         const squareCol = parseInt(squarePos[1]);
-        const selPieceRow = parseInt(selectedPiecePos[0]);
-        const selPieceCol = parseInt(selectedPiecePos[1]);
+        const selPieceRow = parseInt(selPiecePos[0]);
+        const selPieceCol = parseInt(selPiecePos[1]);
         const jumpedRow = parseInt((selPieceRow + squareRow) / 2);
         const jumpedCol = parseInt((selPieceCol + squareCol) / 2);
         // ^^ defining each row and column according to the array built by .split() and parsing these strings into integers for comparison using operators
@@ -83,6 +83,7 @@ function validMove(square, selectedPiece) {
             (selPieceRow === squareRow + 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1)) ||
             (selPieceRow === squareRow - 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1))
             //first iteration of a viable move is a one tile diagonal move
+            // to do:
         ) {
             console.log('valid move');
             return true;
@@ -119,3 +120,9 @@ const Player2 = {
     pieces: black,
     score: 0,
 };
+function startGame() {}
+function switchTurns() {
+    Player1.playerTurn = !Player1.playerTurn;
+    Player2.playerTurn = !Player2.playerTurn;
+}
+startGame();
