@@ -26,7 +26,6 @@ function createBoard() {
         }
     }
 }
-createBoard();
 let selectedPiece;
 function movePiece() {
     const square = this;
@@ -50,8 +49,12 @@ function movePiece() {
                 // if square clicked does not have a piece and selectedPiece has value of piece then append selectedPiece to that square clicked
                 selectedPiece = null;
                 // clear selectedPiece value after placing in new square
+                console.log('valid move');
+                checkWinCondition();
+                switchTurns();
             } else {
                 selectedPiece = null;
+                console.log('invalid move');
             }
         }
         // else square clicked does not have a piece and selectedPiece has value of null execute nothing
@@ -61,8 +64,6 @@ function movePiece() {
     }
 }
 function validMove(square, selectedPiece) {
-    console.log('destination', square);
-    console.log('selectedPiece', selectedPiece.parentElement);
     if (square && selectedPiece) {
         // define the elements that i will be using to build if/else statements that compare positions in order to check for viable move
         const squarePos = square.id.split('-'); // .split() splits a string , in this case the id i created for each square ('row-col') , into an array of two items. ('-') => represnts where to split the string
@@ -78,7 +79,6 @@ function validMove(square, selectedPiece) {
 
         const jumpedSquare = document.getElementById(`${jumpedRow}-${jumpedCol}`); // define jumpedSquare and build an ID
         // after defining both the destination square and selected squares position i can use these to define the position of a jumped square in between the two by comparing their values. essentially allowing for a two tile move as opposed to the only allowable one tile move BUT only if the jumped square contains a piece then considering this a capture move
-        console.log('captured piece', jumpedSquare);
         if (
             (selPieceRow === squareRow + 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1)) ||
             (selPieceRow === squareRow - 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1))
