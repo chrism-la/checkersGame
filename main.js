@@ -120,7 +120,16 @@ const Player2 = {
     pieces: black,
     score: 0,
 };
-function startGame() {}
+function startGame() {
+    createBoard();
+    const squares = document.querySelectorAll('.square');
+    squares.forEach((square) => {
+        square.onclick = movePiece;
+    });
+    Player1.playerTurn = true;
+    Player2.playerTurn = false;
+    checkWinCondition();
+}
 function checkWinCondition() {
     if (Player1.pieces.length === 0) {
         console.log('Player 2 wins!');
