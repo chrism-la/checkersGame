@@ -6,27 +6,27 @@ function createBoard() {
             const square = document.createElement('div');
             square.className = 'square';
             square.id = `${row}-${col}`;
-            square.onclick = movePiece;
-            // adding eventlistener to each square
             if ((row + col) % 2 === 0) {
                 square.classList.add('red');
             } else {
                 square.classList.add('black');
                 if (row < 3) {
                     square.innerHTML = '<p>●</p>';
-                    const pTag = square.querySelector('p');
-                    pTag.id = 'black-piece';
+                    const piece = square.querySelector('p');
+                    piece.id = 'black-piece';
                 } else if (row > 4) {
                     square.innerHTML = '<p>●</p>';
-                    const pTag = square.querySelector('p');
-                    pTag.id = 'white-piece';
+                    const piece = square.querySelector('p');
+                    piece.id = 'white-piece';
                 }
             }
             gameBoard.appendChild(square);
         }
     }
 }
+createBoard();
 let selectedPiece;
+
 function movePiece() {
     const square = this;
     // this keyword is referencing the object executing current piece of code => square.onclick
@@ -34,6 +34,7 @@ function movePiece() {
 
     if (square.classList.contains('black')) {
         // condition to limit movement to only black squares
+        const currentPlayer = Player1.playerTurn ? Player1 : Player2;
         if (piece) {
             if (selectedPiece) {
                 selectedPiece = null;
@@ -44,7 +45,7 @@ function movePiece() {
                 // if square clicked has a piece and selectedPiece has value of null then assign piece in selected square to selectedPiece
             }
         } else if (selectedPiece) {
-            if (validMove(square, selectedPiece)) {
+            if (validMove(square, selectedPiece, currentPlayer)) {
                 square.appendChild(selectedPiece);
                 // if square clicked does not have a piece and selectedPiece has value of piece then append selectedPiece to that square clicked
                 selectedPiece = null;
@@ -65,6 +66,11 @@ function movePiece() {
 }
 function validMove(square, selectedPiece) {
     if (square && selectedPiece) {
+        const currentPlayer = Player1.playerTurn ? Player1 : Player2;
+        if (!currentPlayer.pieces.includes(selectedPiece)) {
+            console.log("Cannot move opponent's piece");
+            return false;
+        }
         // define the elements that i will be using to build if/else statements that compare positions in order to check for viable move
         const squarePos = square.id.split('-'); // .split() splits a string , in this case the id i created for each square ('row-col') , into an array of two items. ('-') => represnts where to split the string
         const selPiecePos = selectedPiece.parentElement.id.split('-'); // .split() again but in this case to the selectedPiece parentElement in other words its square ID
@@ -85,19 +91,22 @@ function validMove(square, selectedPiece) {
             //first iteration of a viable move is a one tile diagonal move
             // to do:
         ) {
-            console.log('valid move');
             return true;
         } else if (jumpedSquare.querySelector('p')) {
             // second iteration of viable move allows for two tile move only IF jumped square contains a <P> element
+            const capturedPiece = jumpedSquare.querySelector('p');
             jumpedSquare.innerHTML = ''; // remove piece
+            currentPlayer.pieces.splice(currentPlayer.pieces.indexOf(capturedPiece), 1);
             square.appendChild(selectedPiece);
             selectedPiece = null;
             console.log('capture move');
+            console.log(Player2.pieces);
             return true;
         }
         console.log('cannot move here'); // if no valid moves , for example: 3 tile move or 2 tile move that is not a capture
         return false;
     }
+    return true;
 }
 const pieces = document.querySelectorAll('p');
 const white = [];
@@ -111,25 +120,15 @@ for (let i = 0; i < 12; i++) {
     black.push(blackPieces);
 }
 const Player1 = {
-    playerTurn: true,
+    playerTurn: null,
     pieces: white,
     score: 0,
 };
 const Player2 = {
-    playerTurn: false,
+    playerTurn: null,
     pieces: black,
     score: 0,
 };
-function startGame() {
-    createBoard();
-    const squares = document.querySelectorAll('.square');
-    squares.forEach((square) => {
-        square.onclick = movePiece;
-    });
-    Player1.playerTurn = true;
-    Player2.playerTurn = false;
-    checkWinCondition();
-}
 function checkWinCondition() {
     if (Player1.pieces.length === 0) {
         console.log('Player 2 wins!');
@@ -141,4 +140,15 @@ function switchTurns() {
     Player1.playerTurn = !Player1.playerTurn;
     Player2.playerTurn = !Player2.playerTurn;
 }
+function startGame() {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach((square) => {
+        square.onclick = movePiece;
+    });
+
+    Player1.playerTurn = true;
+    Player2.playerTurn = false;
+    checkWinCondition();
+}
+console.log(Player2.pieces);
 startGame();
