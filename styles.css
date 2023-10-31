@@ -48,6 +48,21 @@ section {
   background-color: rgb(133, 0, 0);
 }
 
-#white-piece {
+.white-piece {
   color: #ffffffce;
+}
+
+#playerWins {
+  z-index: 100;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(128, 128, 128, 0.445);
+  width: auto;
+  padding: 10px;
+  border-radius: 20px;
 }
