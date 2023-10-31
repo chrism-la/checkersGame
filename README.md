@@ -1,16 +1,14 @@
 CHECKERS GAME
 
-# Deployment
-
 # Initialization
 
-### The board comes with two different colors of checkers — Red and White.
-
-### The player to go first will be chosen at random.
-
-### The board is made of alternating light and dark squares.
+### The board comes with two different colors of checkers — Black and White.
 
 ### Each player has three rows of four checkers each. 12 total
+
+### White pieces go first
+
+### The board is made of alternating light and dark squares.
 
 # Rules
 
@@ -68,7 +66,10 @@ CHECKERS GAME
 
 ## Javascript
 
-# Post Updates
+# Post Updates:
 
-1. Transform into Chess Game
-2. Create mini Chess puzzles to solve
+### Competition against AI. As of now the game requires 2 Users on the same device to alternate turns
+
+### High-Score/Win ratio tracker
+
+### Future UI and QOL enhancements
