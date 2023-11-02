@@ -94,9 +94,10 @@ function validMove(square, selectedPiece) {
         const jumpedRow = parseInt((selPieceRow + squareRow) / 2);
         const jumpedCol = parseInt((selPieceCol + squareCol) / 2);
         const jumpedSquare = document.getElementById(`${jumpedRow}-${jumpedCol}`);
-        if (currentPlayer === Player1 && selPieceRow === squareRow + 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1)) {
-            return true;
-        } else if (currentPlayer === Player2 && selPieceRow === squareRow - 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1)) {
+        if (
+            (selPieceRow === squareRow + 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1)) ||
+            (selPieceRow === squareRow - 1 && (selPieceCol === squareCol + 1 || selPieceCol === squareCol - 1))
+        ) {
             return true;
         } else if (jumpedSquare.querySelector('p')) {
             const capturedPiece = jumpedSquare.querySelector('p');
