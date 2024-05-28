@@ -1,6 +1,6 @@
 ![Screenshot](images/chess.jpg)
 
-![Build Status](https://img.shields.io/travis/your-username/your-repo.svg)
+![Build Status](https://img.shields.io/travis/chrism-la/checkersGame.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 # Checkers 1.0
