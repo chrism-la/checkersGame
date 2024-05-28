@@ -1,4 +1,5 @@
 ![Screenshot](images/chess.jpg)
+
 ![Build Status](https://img.shields.io/travis/your-username/your-repo.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
