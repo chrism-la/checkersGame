@@ -1,4 +1,4 @@
-CHECKERS GAME
+1v1 Checkers Game ![Screenshot](images/chess.jpg)
 
 # Initialization
 
