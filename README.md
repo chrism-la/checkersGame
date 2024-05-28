@@ -1,4 +1,19 @@
-1v1 Checkers Game ![Screenshot](images/chess.jpg)
+![Screenshot](images/chess.jpg)
+![Build Status](https://img.shields.io/travis/your-username/your-repo.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+# Checkers 1.0
+
+The current state of the game offers a Checkers format.
+Future updates will include a Chess format.
+
+## Table of Contents
+
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Features](#features)
+-   [Contributing](#contributing)
+-   [License](#license)
 
 # Initialization
 
