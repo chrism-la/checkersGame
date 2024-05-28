@@ -29,14 +29,13 @@ let allPieces = document.querySelectorAll('p');
 let allPiecesArray = Array.from(allPieces);
 let white = [];
 let black = [];
-for (let i = 12; i < 24; i++) {
-    let whitePieces = allPieces[i];
-    white.push(whitePieces);
-}
-for (let i = 0; i < 12; i++) {
-    let blackPieces = allPieces[i];
-    black.push(blackPieces);
-}
+allPiecesArray.forEach((piece, index) => {
+    if (index >= 12 && index < 24) {
+        white.push(piece);
+    } else if (index < 12) {
+        black.push(piece);
+    }
+});
 const Player1 = {
     playerTurn: null,
     pieces: white,
@@ -52,9 +51,9 @@ let selectedPiece;
 function movePiece() {
     const square = this;
     const piece = square.querySelector('p');
+    const currentPlayer = Player1.playerTurn ? Player1 : Player2;
 
     if (square.classList.contains('black')) {
-        const currentPlayer = Player1.playerTurn ? Player1 : Player2;
         if (piece) {
             if (selectedPiece) {
                 selectedPiece = null;
