@@ -72,12 +72,21 @@ section {
 
 @media screen and (max-width: 600px) {
   body {
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .gameBoard {
-    grid-template-columns: repeat(8, 60px);
-    grid-template-rows: repeat(8, 60px);
+    grid-template-columns: repeat(8, 40px);
+    grid-template-rows: repeat(8, 40px);
+    border: 5px solid rgb(127, 86, 86);
     width: 100%;
+  }
+
+  .square {
+    font-size: 36px;
+  }
+
+  #playerWins {
+    font-size: 36px;
   }
 }
